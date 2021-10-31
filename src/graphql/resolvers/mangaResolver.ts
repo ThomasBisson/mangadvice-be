@@ -1,8 +1,20 @@
-import { db } from '@root/server';
-import { CollectionName } from '@repositories/databases/mongodbConnection';
+import { GResolvers, GManga } from '../generated/schema';
 
-export default {
+const resolver: GResolvers = {
   Query: {
-    allManga: async (_, {}, { manga }) => db?.find(CollectionName.manga),
+    mangas: async (): Promise<GManga[]> =>
+      Promise.resolve([
+        {
+          title: 'test',
+          description: 'test desc',
+        },
+      ]),
+    manga: async (_parent, { title }): Promise<GManga> =>
+      Promise.resolve({
+        title: `title : ${title}`,
+        description: `desc test ${title} manga`,
+      }),
   },
 };
+
+export default resolver;

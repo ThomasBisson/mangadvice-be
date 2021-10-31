@@ -1,7 +1,13 @@
-# don't ever lint node_modules
-node_modules
+# don't ever lint node-modules
+node-modules
+
+# don't lint build output
+dist
+generated
+
+# don't lint nyc coverage output
+coverage
 
 # don't lint configuration folders
 .vscode
 .git
-.eslintrc.js

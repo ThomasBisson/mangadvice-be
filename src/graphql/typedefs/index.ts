@@ -1,3 +1,11 @@
-import test from './test';
+import path from 'path';
+import { loadFilesSync } from '@graphql-tools/load-files';
+import { mergeTypeDefs } from '@graphql-tools/merge';
 
-export default [test];
+const typesArray = loadFilesSync(path.join(__dirname, './'), {
+  extensions: ['graphql'],
+});
+
+const docNodes = mergeTypeDefs(typesArray); // , { all: true });
+
+export default docNodes;

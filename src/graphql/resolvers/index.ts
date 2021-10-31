@@ -1,6 +1,8 @@
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-unresolved */
-// eslint-disable import/extensions
-import test from './testResolver';
+import { mergeResolvers } from '@graphql-tools/merge';
+import mangaResolver from './mangaResolver';
 
-export default [test];
+const resolversArr = [mangaResolver];
+
+const resolvers = mergeResolvers(resolversArr);
+
+export default resolvers;

@@ -1,65 +1,73 @@
 {
-  "name": "mangaeasy",
+  "name": "mangadvice-be",
   "version": "1.0.0",
-  "description": "An app to help me find and choose manga",
-  "main": "dist/server.js",
+  "description": "Backend of MangAdvice",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build:watch": "tsc --watch",
-    "dev": "nodemon --config nodemon.json src/server.ts",
-    "dev:debug": "nodemon --config nodemon.json --inspect-brk src/server.ts",
-    "test": "jest --verbose",
-    "test-watch": "jest --verbose --watchAll",
-    "build": "tsc"
+    "build": "rimraf ./dist && tsc",
+    "start": "npm run build && node dist/index.js",
+    "start:onetimedev": "ts-node ./src/index.ts",
+    "start:dev": "nodemon",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gen:graphql": "graphql-codegen --config codegen.yml"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThomasBisson/mangadvice-be.git"
+  },
+  "keywords": [
+    "node",
+    "typescript",
+    "graphql",
+    "mangadvice",
+    "backend"
+  ],
   "author": "Thomas Bisson",
   "license": "ISC",
-  "devDependencies": {
-    "@graphql-codegen/cli": "^1.21.6",
-    "@types/bcrypt": "^5.0.0",
-    "@types/cookie-parser": "^1.4.2",
-    "@types/express": "^4.17.12",
-    "@types/graphql": "^14.5.0",
-    "@types/jest": "^26.0.23",
-    "@types/jest-when": "^2.7.3",
-    "@types/jsonwebtoken": "^8.5.2",
-    "@types/mongodb": "^3.6.19",
-    "@types/node": "^15.12.4",
-    "@typescript-eslint/eslint-plugin": "^4.28.0",
-    "@typescript-eslint/parser": "^4.28.0",
-    "concurrently": "^6.2.0",
-    "dotenv": "^10.0.0",
-    "eslint": "^7.29.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-node": "^11.1.0",
-    "jest": "^27.0.5",
-    "jest-when": "^3.3.1",
-    "nodemon": "^2.0.7",
-    "prettier": "^2.3.1",
-    "ts-jest": "^27.0.3",
-    "ts-node": "^10.0.0",
-    "ts-node-dev": "^1.1.8",
-    "typescript": "^4.3.4"
+  "bugs": {
+    "url": "https://github.com/ThomasBisson/mangadvice-be/issues"
   },
+  "homepage": "https://github.com/ThomasBisson/mangadvice-be#readme",
   "dependencies": {
-    "apollo-server-express": "^2.25.2",
-    "bcrypt": "^5.0.1",
-    "body-parser": "^1.19.0",
-    "consola": "^2.15.3",
-    "cookie-parser": "^1.4.5",
+    "@graphql-tools/load-files": "^6.5.2",
+    "@graphql-tools/merge": "^8.2.1",
+    "apollo-server-core": "^3.4.0",
+    "apollo-server-express": "^3.4.0",
     "express": "^4.17.1",
-    "graphql": "^15.5.1",
-    "graphql-tools": "^7.0.5",
-    "jsonwebtoken": "^8.5.1",
-    "module-alias": "^2.2.2",
-    "mongodb": "^3.6.9"
+    "graphql": "^15.7.2",
+    "mongoose": "^6.0.12"
   },
-  "_moduleAliases": {
-    "@root": ".",
-    "@domains": "dist/domains",
-    "@utils": "dist/utils",
-    "@middlewares": "dist/middlewares",
-    "@graphql": "dist/graphql",
-    "@repositories": "dist/repositories"
+  "devDependencies": {
+    "@graphql-codegen/cli": "2.2.2",
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.11.6",
+    "@typescript-eslint/eslint-plugin": "^5.2.0",
+    "@typescript-eslint/parser": "^5.2.0",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.14",
+    "prettier": "^2.4.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4",
+    "@graphql-codegen/typescript": "2.3.0",
+    "@graphql-codegen/typescript-document-nodes": "2.2.0",
+    "@graphql-codegen/typescript-resolvers": "2.4.0",
+    "@graphql-codegen/typescript-mongodb": "2.2.0",
+    "@graphql-codegen/introspection": "2.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }

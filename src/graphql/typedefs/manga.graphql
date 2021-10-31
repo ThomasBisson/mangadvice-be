@@ -1,0 +1,9 @@
+type Query {
+  mangas: [Manga!]
+  manga(title: String): Manga
+}
+
+type Manga {
+  title: String!,
+  description: String!,
+}
